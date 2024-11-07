@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Mèmes</title>
+    <script src="https://cdn.tailwindcss.com"></script> 
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+        body {
+            font-family: 'Comic Neue', cursive;
+            background: linear-gradient(to right, #f9f9f9, #99ccff, #cc99ff);
+        }
+        .hover-bounce:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+        .fun-shadow {
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        .neon-button {
+            border-radius: 12px;
+            background-color: #f48fb1;
+            padding: 0.5em 1em;
+            text-shadow: 0px 0px 4px rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+        .neon-button:hover {
+            background-color: #ec407a;
+            box-shadow: 0px 0px 8px #ff99cc, 0px 0px 20px #ff99cc;
+            transform: translateY(-2px);
+        }
+        .cool-input {
+            border: 2px solid #6699ff;
+            transition: box-shadow 0.3s ease;
+        }
+        .cool-input:focus {
+            box-shadow: 0px 0px 8px #99ccff;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-500 to-blue-400 flex items-center justify-between p-4 w-full shadow-md">
+        <div class="flex items-center space-x-2">
+            <img src="C:\Users\samik\Pictures\Screenshots\NicePng_meme-png_29036.png" alt="Logo" class="rounded-full w-10 md:h-10 shadow-md hover-bounce">
+            <h1 class="text-3xl font-extrabold text-white tracking-wide">MemeAREA</h1>
+        </div>
+        <div class="space-x-2 md:space-x-4 flex">
+            <button onclick="redirectToSignup()" class="neon-button text-white">S'inscrire</button>
+            <button onclick="scrollToLogin()" class="neon-button text-white bg-blue-500">Se connecter</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-8 space-y-6">
+        <h2 class="text-5xl font-extrabold text-center text-purple-700">Meme Generator</h2>
+
+        <!-- Meme Preview Section -->
+        <div class="flex flex-col md:flex-row gap-8 justify-center items-center">
+            <!-- Meme Image Area -->
+            <div class="w-full md:w-1/2 p-4 bg-gray-200 rounded-lg shadow-lg fun-shadow hover-bounce transition-all">
+                <img src="https://img.freepik.com/vecteurs-libre/meme-carre-chat-vibrant-simple_742173-4493.jpg" alt="Meme" class="w-full max-w-md h-auto rounded-lg shadow-xl hover:scale-110 transition-all mx-auto">
+            </div>
+
+            <!-- Meme Controls -->
+            <div class="w-full md:w-1/2 space-y-6 bg-white p-6 rounded-lg shadow-md fun-shadow">
+                <div class="flex gap-4">
+                    <button class="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all hover-bounce">Espacement</button>
+                    <button class="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all hover-bounce">Ajouter objet</button>
+                    <button class="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all hover-bounce">Dessiner</button>
+                </div>
+
+                <div class="space-y-4">
+                    <label class="block text-gray-700 font-bold">Télécharger image</label>
+                    <div class="relative">
+                        <!-- Hidden File Input -->
+                        <input type="file" id="file-upload" class="hidden" onchange="updateFileName()">
+                        
+                        <!-- Styled Label as the Button -->
+                        <label for="file-upload" class="flex items-center justify-center w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg shadow-md cursor-pointer hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 transition-all hover-bounce">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M7 16V4m0 0h6m0 0v12m4-4h2v4a2 2 0 002 2h4m0-4H7M6 4h6m0 0V4a2 2 0 012 2v4"></path>
+                            </svg>
+                            Choisir un fichier
+                        </label>
+                
+                        <!-- Text Area for Showing File Name -->
+                        <p id="file-name" class="mt-2 text-gray-600 italic"></p>
+                    </div>
+                </div>
+                
+                <!-- JavaScript to Update File Name -->
+                <script>
+                    function updateFileName() {
+                        const input = document.getElementById('file-upload');
+                        const fileName = input.files.length > 0 ? input.files[0].name : 'Aucun fichier choisi';
+                        document.getElementById('file-name').textContent = fileName;
+                    }
+                </script>
+
+                <div class="space-y-4">
+                    <label class="block text-gray-700 font-bold">Texte principal</label>
+                    <input type="text" class="w-full p-3 cool-input text-gray-800 bg-gray-100 rounded-lg shadow-sm">
+                    <label class="block text-gray-700 font-bold">Texte secondaire</label>
+                    <input type="text" class="w-full p-3 cool-input text-gray-800 bg-gray-100 rounded-lg shadow-sm">
+                </div>
+
+                <div class="flex gap-4">
+                    <button class="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all hover-bounce">Effet</button>
+                    <button class="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all hover-bounce">Ajouter texte</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Options -->
+        <div class="text-center mt-6">
+            <button class="text-blue-600 hover:text-blue-800 text-xl transition-colors duration-200 hover-bounce">plus d'options ⏷</button>
+        </div>
+
+        <!-- Generate/Reset Buttons -->
+        <div class="flex justify-between mt-6">
+            <button class="bg-green-500 text-white py-3 px-6 rounded-lg hover:bg-green-600 hover-bounce transition-all">Générer</button>
+            <button class="bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-600 hover-bounce transition-all">Réinitialiser</button>
+        </div>
+    </main>
+
+</body>
+</html>

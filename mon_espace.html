@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MemeArea</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script>
+     function showSection(sectionId, button) {
+    // Masquer toutes les sections de contenu
+    document.querySelectorAll('.content-section').forEach(section => {
+      section.classList.add('hidden');
+    });
+    
+    // Afficher la section sélectionnée
+    document.getElementById(sectionId).classList.remove('hidden');
+    
+    // Réinitialiser les styles de tous les boutons
+    document.querySelectorAll('.flex button').forEach(btn => {
+      btn.classList.remove('bg-blue-500', 'text-white');
+      btn.classList.add('bg-gray-300', 'text-gray-700');
+    });
+    
+    // Appliquer le style actif au bouton sélectionné
+    button.classList.remove('bg-gray-300', 'text-gray-700');
+    button.classList.add('bg-blue-500', 'text-white');
+  }
+    function incrementLike(button) {
+      const countElement = button.querySelector('.like-count');
+      let count = parseInt(countElement.textContent);
+      countElement.textContent = count + 1;
+    }
+
+    function incrementHeart(button) {
+      const countElement = button.querySelector('.heart-count');
+      let count = parseInt(countElement.textContent);
+      countElement.textContent = count + 1;
+    }
+
+    function shareMeme() {
+      alert('Le meme a été partagé!');
+    }
+
+    // Fonction pour afficher/masquer le menu mobile
+    function toggleMenu() {
+      const menu = document.getElementById("mobile-menu");
+      menu.classList.toggle("hidden");
+    }
+    function switchButton(sectionId, button) {
+    // Masquer toutes les sections de contenu
+    document.querySelectorAll('.content-section').forEach(section => {
+      section.classList.add('hidden');
+    });
+    
+    // Afficher la section sélectionnée
+    document.getElementById(sectionId).classList.remove('hidden');
+    
+    // Réinitialiser les styles de tous les boutons
+    document.querySelectorAll('.flex button').forEach(btn => {
+      btn.classList.remove('bg-blue-500', 'text-white');
+      btn.classList.add('bg-gray-300', 'text-gray-700');
+    });
+    
+    // Appliquer le style actif au bouton sélectionné
+    button.classList.remove('bg-gray-300', 'text-gray-700');
+    button.classList.add('bg-blue-500', 'text-white');
+  }
+  function switchActiveButton(clickedButton) {
+  // Sélectionne uniquement les boutons dans la section principale
+  const buttons = document.querySelectorAll('main .toggle-button');
+
+  buttons.forEach(button => {
+    if (button === clickedButton) {
+      button.classList.remove('bg-gray-300', 'text-gray-700');
+      button.classList.add('bg-blue-500', 'text-white');
+    } else {
+      button.classList.add('bg-gray-300', 'text-gray-700');
+      button.classList.remove('bg-blue-500', 'text-white');
+    }
+  });
+}
+
+function highlightButton(clickedButton) {
+    // Sélectionner tous les boutons avec la classe 'section-button'
+    document.querySelectorAll('.section-button').forEach(button => {
+      // Réinitialiser chaque bouton en gris
+      button.classList.remove('bg-blue-500', 'text-white');
+      button.classList.add('bg-gray-300', 'text-gray-700');
+    });
+    // Appliquer la couleur bleue uniquement au bouton cliqué
+    clickedButton.classList.remove('bg-gray-300', 'text-gray-700');
+    clickedButton.classList.add('bg-blue-500', 'text-white');
+  }
+  
+  function switchSection(sectionId, clickedButton) {
+    // Masquer toutes les sections de contenu
+    document.querySelectorAll('.content-section').forEach(section => {
+      section.classList.add('hidden');
+    });
+    
+    // Afficher la section sélectionnée
+    document.getElementById(sectionId).classList.remove('hidden');
+
+    // Réinitialiser les styles de tous les boutons
+    document.querySelectorAll('.section-button').forEach(button => {
+      button.classList.remove('bg-blue-500', 'text-white');
+      button.classList.add('bg-gray-300', 'text-gray-700');
+    });
+
+    // Appliquer le style actif au bouton sélectionné
+    clickedButton.classList.remove('bg-gray-300', 'text-gray-700');
+    clickedButton.classList.add('bg-blue-500', 'text-white');
+  }
+  </script>
+</head>
+<body class="bg-gradient-to-r from-[#FFFFCC] via-[#CCFFFF] to-[#CCCCFF] min-h-screen p-0 m-0">
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-[#6699FF] to-[#99CCFF] flex items-center justify-between p-3 sm:p-4 w-full shadow-md">
+    <div class="flex items-center space-x-2 sm:space-x-3">
+      <img src="https://via.placeholder.com/40" alt="Logo" class="w-8 sm:w-10 h-8 sm:h-10 rounded-full">
+      <span class="text-lg sm:text-2xl font-bold text-gray-800">MemeAREA</span>
+    </div>
+    
+    <!-- Search Bar -->
+    <div class="relative w-full max-w-[200px] sm:max-w-xs md:max-w-sm flex items-center">
+      <input type="text" placeholder="Recherchez sur MemeArea" class="pl-10 pr-4 py-1 sm:py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full text-sm sm:text-base transition-all duration-300">
+      <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+        <i class="fas fa-search text-gray-500 text-sm sm:text-base"></i>
+      </div>
+    </div>
+  
+    <!-- Hamburger Menu for Mobile -->
+    <button class="sm:hidden text-gray-700 ml-2" onclick="toggleMenu()">
+      <i class="fas fa-bars text-xl"></i>
+    </button>
+  
+    <!-- Desktop Menu Buttons -->
+    <div class="hidden sm:flex items-center space-x-3 sm:space-x-4">
+      <button class="text-gray-700 hover:text-white"><i class="fas fa-cog text-xl sm:text-2xl"></i></button>
+      <button onclick="redirectToSignup()" class="bg-[#FFCCFF] text-gray-800 font-semibold px-2 md:px-4 py-1 md:py-2 rounded-lg shadow hover:bg-[#FF99CC] hover:text-white">S'inscrire</button>
+      <button onclick="scrollToLogin()" class="bg-white text-[#6699FF] font-semibold px-2 md:px-4 py-1 md:py-2 rounded-lg shadow hover:bg-[#336699] hover:text-white">Se connecter</button>
+      <div class="flex items-center space-x-1 sm:space-x-2">
+        <i class="fas fa-user-circle text-2xl sm:text-3xl text-gray-700"></i>
+        <button onclick="redirectToProfile()" class="text-gray-700 font-medium text-sm sm:text-base hover:text-white">Mon espace</button>
+      </div>
+    </div>
+  </header>
+  
+  
+  <!-- Menu mobile -->
+  <div id="mobile-menu" class="sm:hidden hidden flex-col space-y-2 items-center p-4 bg-gradient-to-r from-[#6699FF] to-[#99CCFF]">
+    <button onclick="redirectToSignup()" class="bg-[#FFCCFF] text-gray-800 font-semibold px-2 py-1 rounded-lg shadow hover:bg-[#FF99CC] hover:text-white w-full text-center">S'inscrire</button>
+    <button onclick="scrollToLogin()" class="bg-white text-[#6699FF] font-semibold px-2 py-1 rounded-lg shadow hover:bg-[#336699] hover:text-white w-full text-center">Se connecter</button>
+    <button onclick="redirectToProfile()" class="text-gray-700 font-medium text-sm sm:text-base hover:text-white w-full text-center">Mon espace</button>
+    <button onclick="showSection('parametres')" class="text-gray-700 font-medium text-sm sm:text-base hover:text-white w-full text-center">Paramètres</button>
+  </div>
+
+  <!-- Main Content -->
+  <main class="flex-grow p-4 sm:p-8 pt-16 sm:pt-20">
+    <div class="flex justify-center space-x-2 sm:space-x-4 mb-4">
+      <button onclick="switchSection('creations', this)" class="section-button px-3 sm:px-4 py-1 sm:py-2 bg-blue-500 text-white rounded-lg shadow-md text-sm sm:text-base hover:bg-blue-700 transition-colors">Mes Créations</button>
+      <button onclick="switchSection('historique', this)" class="section-button px-3 sm:px-4 py-1 sm:py-2 bg-gray-300 text-gray-700 rounded-lg shadow-md text-sm sm:text-base hover:bg-gray-400 transition-colors">Historique</button>
+      <button onclick="switchSection('enregistre', this)" class="section-button px-3 sm:px-4 py-1 sm:py-2 bg-gray-300 text-gray-700 rounded-lg shadow-md text-sm sm:text-base hover:bg-gray-400 transition-colors">Enregistré</button>
+    </div>
+
+    <!-- Mes Créations -->
+    <section id="creations" class="content-section">
+      <h2 class="text-xl font-bold mb-4">Mes Créations</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="bg-white p-4 rounded-lg shadow-lg">
+          <img src="https://via.placeholder.com/150" alt="Meme 1" class="w-full h-40 object-cover rounded-lg mb-2">
+          <h3 class="font-semibold">Meme Titre 1</h3>
+          <p class="text-sm text-gray-600 mb-2">Description du meme 1</p>
+          <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+           
+               <!-- <button onclick="incrementLike(this)" class="text-blue-500 hover:text-blue-700">
+              <i class="fas fa-thumbs-up"></i> <span class="like-count">10</span>  --> 
+            </button>
+            <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+              <i class="fas fa-heart"></i> <span class="heart-count">5</span>
+            </button>
+            <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+              <i class="fas fa-share"></i> Partager
+            </button>
+          </div>
+        </div>
+        <!-- Ajoutez d'autres mèmes ici avec les mêmes boutons de réaction et partage -->
+      </div>
+    </section>
+
+    <!-- Historique -->
+    <section id="historique" class="content-section hidden">
+      <h2 class="text-xl font-bold mb-4">Historique</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="bg-white p-4 rounded-lg shadow-lg">
+          <img src="https://via.placeholder.com/150" alt="Meme Historique 1" class="w-full h-40 object-cover rounded-lg mb-2">
+          <h3 class="font-semibold">Historique Titre 1</h3>
+          <p class="text-sm text-gray-600 mb-2">Description de l'historique 1</p>
+          <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+            <button onclick="incrementLike(this)" class="text-blue-500 hover:text-blue-700">
+              <i class="fas fa-thumbs-up"></i> <span class="like-count">12</span>
+            </button>
+            <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+              <i class="fas fa-heart"></i> <span class="heart-count">8</span>
+            </button>
+            <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+              <i class="fas fa-share"></i> Partager
+            </button>
+          </div>
+        </div>
+        <!-- Ajoutez d'autres mèmes ici avec les mêmes boutons de réaction et partage -->
+      </div>
+    </section>
+
+    <!-- Enregistré -->
+    <section id="enregistre" class="content-section hidden">
+      <h2 class="text-xl font-bold mb-4">Mèmes Enregistrés</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="bg-white p-4 rounded-lg shadow-lg">
+          <img src="https://via.placeholder.com/150" alt="Meme Enregistré 1" class="w-full h-40 object-cover rounded-lg mb-2">
+          <h3 class="font-semibold">Enregistré Meme Titre 1</h3>
+          <p class="text-sm text-gray-600 mb-2">Description du meme enregistré 1</p>
+          <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+            <button onclick="incrementLike(this)" class="text-blue-500 hover:text-blue-700">
+              <i class="fas fa-thumbs-up"></i> <span class="like-count">15</span>
+            </button>
+            <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+              <i class="fas fa-heart"></i> <span class="heart-count">10</span>
+            </button>
+            <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+              <i class="fas fa-share"></i> Partager
+            </button>
+          </div>
+        </div>
+        <!-- Ajoutez d'autres mèmes ici avec les mêmes boutons de réaction et partage -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-r from-[#6699FF] to-[#99CCFF] py-4 text-center text-white">
+    <p>&copy; 2024 MemeAREA. Tous droits réservés.</p>
+  </footer>
+</body>
+</html>
