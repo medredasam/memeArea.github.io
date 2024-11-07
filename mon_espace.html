@@ -12,6 +12,8 @@
     document.querySelectorAll('.content-section').forEach(section => {
       section.classList.add('hidden');
     });
+
+    
     
     // Afficher la section sélectionnée
     document.getElementById(sectionId).classList.remove('hidden');
@@ -26,6 +28,22 @@
     button.classList.remove('bg-gray-300', 'text-gray-700');
     button.classList.add('bg-blue-500', 'text-white');
   }
+
+  function redirectToAcceuil() {
+        window.location.href = 'acceuil.html';
+    }
+    function redirectToGenerate() {
+        window.location.href = 'generate_meme.html';
+    }
+
+    function showMemeDetails2() {
+        window.location.href = 'detail_meme2.html';
+    }
+
+    function showMemeDetails2() {
+        window.location.href = 'detail_meme2.html';
+    }
+
     function incrementLike(button) {
       const countElement = button.querySelector('.like-count');
       let count = parseInt(countElement.textContent);
@@ -172,16 +190,15 @@ function highlightButton(clickedButton) {
     <!-- Mes Créations -->
     <section id="creations" class="content-section">
       <h2 class="text-xl font-bold mb-4">Mes Créations</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 m-8">
+        <!-- Exemple de mème avec image cliquable -->
         <div class="bg-white p-4 rounded-lg shadow-lg">
-          <img src="https://via.placeholder.com/150" alt="Meme 1" class="w-full h-40 object-cover rounded-lg mb-2">
+          <a href="javascript:void(0)" onclick="showMemeDetails()">
+            <img src="13.jpg" alt="Meme 1" class="w-full h-60 object-cover rounded-lg mb-2">
+          </a>
           <h3 class="font-semibold">Meme Titre 1</h3>
           <p class="text-sm text-gray-600 mb-2">Description du meme 1</p>
           <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
-           
-               <!-- <button onclick="incrementLike(this)" class="text-blue-500 hover:text-blue-700">
-              <i class="fas fa-thumbs-up"></i> <span class="like-count">10</span>  --> 
-            </button>
             <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
               <i class="fas fa-heart"></i> <span class="heart-count">5</span>
             </button>
@@ -190,46 +207,16 @@ function highlightButton(clickedButton) {
             </button>
           </div>
         </div>
-        <!-- Ajoutez d'autres mèmes ici avec les mêmes boutons de réaction et partage -->
-      </div>
-    </section>
-
-    <!-- Historique -->
-    <section id="historique" class="content-section hidden">
-      <h2 class="text-xl font-bold mb-4">Historique</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+  
+  
+        <!-- Exemple de meme 2 -->
         <div class="bg-white p-4 rounded-lg shadow-lg">
-          <img src="https://via.placeholder.com/150" alt="Meme Historique 1" class="w-full h-40 object-cover rounded-lg mb-2">
-          <h3 class="font-semibold">Historique Titre 1</h3>
-          <p class="text-sm text-gray-600 mb-2">Description de l'historique 1</p>
+          <a href="javascript:void(0)" onclick="showMemeDetails2()">
+            <img src="2.jpg" alt="Meme 1" class="w-full h-60 object-cover rounded-lg mb-2">
+          </a>
+          <h3 class="font-semibold">Meme Titre 2</h3>
+          <p class="text-sm text-gray-600 mb-2">Description du meme 2</p>
           <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
-            <button onclick="incrementLike(this)" class="text-blue-500 hover:text-blue-700">
-              <i class="fas fa-thumbs-up"></i> <span class="like-count">12</span>
-            </button>
-            <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
-              <i class="fas fa-heart"></i> <span class="heart-count">8</span>
-            </button>
-            <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
-              <i class="fas fa-share"></i> Partager
-            </button>
-          </div>
-        </div>
-        <!-- Ajoutez d'autres mèmes ici avec les mêmes boutons de réaction et partage -->
-      </div>
-    </section>
-
-    <!-- Enregistré -->
-    <section id="enregistre" class="content-section hidden">
-      <h2 class="text-xl font-bold mb-4">Mèmes Enregistrés</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        <div class="bg-white p-4 rounded-lg shadow-lg">
-          <img src="https://via.placeholder.com/150" alt="Meme Enregistré 1" class="w-full h-40 object-cover rounded-lg mb-2">
-          <h3 class="font-semibold">Enregistré Meme Titre 1</h3>
-          <p class="text-sm text-gray-600 mb-2">Description du meme enregistré 1</p>
-          <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
-            <button onclick="incrementLike(this)" class="text-blue-500 hover:text-blue-700">
-              <i class="fas fa-thumbs-up"></i> <span class="like-count">15</span>
-            </button>
             <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
               <i class="fas fa-heart"></i> <span class="heart-count">10</span>
             </button>
@@ -238,8 +225,544 @@ function highlightButton(clickedButton) {
             </button>
           </div>
         </div>
-        <!-- Ajoutez d'autres mèmes ici avec les mêmes boutons de réaction et partage -->
+  
+        <!-- Exemple de meme 3 -->
+        <div class="bg-white p-4 rounded-lg shadow-lg">
+          <img src="3.jpg" alt="Meme 3" class="w-full h-60 object-cover rounded-lg mb-2">
+          <h3 class="font-semibold">Meme Titre 3</h3>
+          <p class="text-sm text-gray-600 mb-2">Description du meme 3</p>
+          <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+            <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+              <i class="fas fa-heart"></i> <span class="heart-count">15</span>
+            </button>
+            <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+              <i class="fas fa-share"></i> Partager
+            </button>
+          </div>
+        </div>
+  
+        <!-- Ajoutez autant de memes que nécessaire -->
+        <div class="bg-white p-4 rounded-lg shadow-lg">
+          <img src="4.jpg" alt="Meme 4" class="w-full h-60 object-cover rounded-lg mb-2">
+          <h3 class="font-semibold">Meme Titre 4</h3>
+          <p class="text-sm text-gray-600 mb-2">Description du meme 4</p>
+          <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+            <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+              <i class="fas fa-heart"></i> <span class="heart-count">20</span>
+            </button>
+            <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+              <i class="fas fa-share"></i> Partager
+            </button>
+          </div>
+        </div>
       </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 m-8">
+          <!-- Exemple de meme 1 -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="5.jpg" alt="Meme 1" class="w-full h-60 object-cover rounded-lg mb-2">
+            <h3 class="font-semibold">Meme Titre 1</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 1</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">5</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+    
+          <!-- Exemple de meme 2 -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="6.jpg" alt="Meme 2" class="w-full h-60 object-cover rounded-lg mb-2">
+            <h3 class="font-semibold">Meme Titre 2</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 2</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">10</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+    
+          <!-- Exemple de meme 3 -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="7.jpg" alt="Meme 3" class="w-full h-60 object-cover rounded-lg mb-2">
+            <h3 class="font-semibold">Meme Titre 3</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 3</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">15</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+    
+          <!-- Ajoutez autant de memes que nécessaire -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="8.png" alt="Meme 4" class="w-full h-60 object-cover rounded-lg mb-2">
+            <h3 class="font-semibold">Meme Titre 4</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 4</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">20</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 m-8">
+          <!-- Exemple de meme 1 -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="10.png" alt="Meme 1" class="w-full h-60 object-cover rounded-lg mb-2">
+            <h3 class="font-semibold">Meme Titre 1</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 1</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">5</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+    
+          <!-- Exemple de meme 2 -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="9.jpg" alt="Meme 2" class="w-full h-60 object-cover rounded-lg mb-2">
+            <h3 class="font-semibold">Meme Titre 2</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 2</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">10</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+    
+          <!-- Exemple de meme 3 -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="11.jpg" alt="Meme 3" class="w-full h-60 object-cover rounded-lg mb-2"">
+            <h3 class="font-semibold">Meme Titre 3</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 3</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">15</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+    
+          <!-- Ajoutez autant de memes que nécessaire -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="12.jpg" alt="Meme 4" class="w-full h-60 object-cover rounded-lg mb-2"">
+            <h3 class="font-semibold">Meme Titre 4</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 4</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">20</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- Historique -->
+    <section id="historique" class="content-section hidden">
+      <h2 class="text-xl font-bold mb-4">Historique</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 m-8">
+        <!-- Exemple de mème avec image cliquable -->
+        <div class="bg-white p-4 rounded-lg shadow-lg">
+          <a href="javascript:void(0)" onclick="showMemeDetails()">
+            <img src="2.jpg" alt="Meme 1" class="w-full h-60 object-cover rounded-lg mb-2">
+          </a>
+          <h3 class="font-semibold">Meme Titre 1</h3>
+          <p class="text-sm text-gray-600 mb-2">Description du meme 1</p>
+          <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+            <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+              <i class="fas fa-heart"></i> <span class="heart-count">5</span>
+            </button>
+            <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+              <i class="fas fa-share"></i> Partager
+            </button>
+          </div>
+        </div>
+  
+  
+        <!-- Exemple de meme 2 -->
+        <div class="bg-white p-4 rounded-lg shadow-lg h-">
+          <img src="7.jpg" alt="Meme 2"class="w-full h-60 object-cover rounded-lg mb-2">
+          <h3 class="font-semibold">Meme Titre 2</h3>
+          <p class="text-sm text-gray-600 mb-2">Description du meme 2</p>
+          <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+            <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+              <i class="fas fa-heart"></i> <span class="heart-count">10</span>
+            </button>
+            <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+              <i class="fas fa-share"></i> Partager
+            </button>
+          </div>
+        </div>
+  
+        <!-- Exemple de meme 3 -->
+        <div class="bg-white p-4 rounded-lg shadow-lg">
+          <img src="3.jpg" alt="Meme 3" class="w-full h-60 object-cover rounded-lg mb-2">
+          <h3 class="font-semibold">Meme Titre 3</h3>
+          <p class="text-sm text-gray-600 mb-2">Description du meme 3</p>
+          <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+            <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+              <i class="fas fa-heart"></i> <span class="heart-count">15</span>
+            </button>
+            <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+              <i class="fas fa-share"></i> Partager
+            </button>
+          </div>
+        </div>
+  
+        <!-- Ajoutez autant de memes que nécessaire -->
+        <div class="bg-white p-4 rounded-lg shadow-lg">
+          <img src="4.jpg" alt="Meme 4" class="w-full h-60 object-cover rounded-lg mb-2">
+          <h3 class="font-semibold">Meme Titre 4</h3>
+          <p class="text-sm text-gray-600 mb-2">Description du meme 4</p>
+          <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+            <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+              <i class="fas fa-heart"></i> <span class="heart-count">20</span>
+            </button>
+            <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+              <i class="fas fa-share"></i> Partager
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 m-8">
+          <!-- Exemple de meme 1 -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="5.jpg" alt="Meme 1" class="w-full h-60 object-cover rounded-lg mb-2">
+            <h3 class="font-semibold">Meme Titre 1</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 1</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">5</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+    
+          <!-- Exemple de meme 2 -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="6.jpg" alt="Meme 2" class="w-full h-60 object-cover rounded-lg mb-2">
+            <h3 class="font-semibold">Meme Titre 2</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 2</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">10</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+    
+          <!-- Exemple de meme 3 -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="13.jpg" alt="Meme 3" class="w-full h-60 object-cover rounded-lg mb-2">
+            <h3 class="font-semibold">Meme Titre 3</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 3</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">15</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+    
+          <!-- Ajoutez autant de memes que nécessaire -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="8.png" alt="Meme 4" class="w-full h-60 object-cover rounded-lg mb-2">
+            <h3 class="font-semibold">Meme Titre 4</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 4</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">20</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 m-8">
+          <!-- Exemple de meme 1 -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="10.png" alt="Meme 1" class="w-full h-60 object-cover rounded-lg mb-2">
+            <h3 class="font-semibold">Meme Titre 1</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 1</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">5</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+    
+          <!-- Exemple de meme 2 -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="9.jpg" alt="Meme 2" class="w-full h-60 object-cover rounded-lg mb-2">
+            <h3 class="font-semibold">Meme Titre 2</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 2</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">10</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+    
+          <!-- Exemple de meme 3 -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="11.jpg" alt="Meme 3" class="w-full h-60 object-cover rounded-lg mb-2"">
+            <h3 class="font-semibold">Meme Titre 3</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 3</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">15</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+    
+          <!-- Ajoutez autant de memes que nécessaire -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="12.jpg" alt="Meme 4" class="w-full h-60 object-cover rounded-lg mb-2"">
+            <h3 class="font-semibold">Meme Titre 4</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 4</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">20</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- Enregistré -->
+    <section id="enregistre" class="content-section hidden">
+      <h2 class="text-xl font-bold mb-4">Mèmes Enregistrés</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 m-8">
+        <!-- Exemple de mème avec image cliquable -->
+        <div class="bg-white p-4 rounded-lg shadow-lg">
+          <a href="javascript:void(0)" onclick="showMemeDetails()">
+            <img src="3.jpg" alt="Meme 1" class="w-full h-60 object-cover rounded-lg mb-2">
+          </a>
+          <h3 class="font-semibold">Meme Titre 1</h3>
+          <p class="text-sm text-gray-600 mb-2">Description du meme 1</p>
+          <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+            <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+              <i class="fas fa-heart"></i> <span class="heart-count">5</span>
+            </button>
+            <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+              <i class="fas fa-share"></i> Partager
+            </button>
+          </div>
+        </div>
+  
+  
+        <!-- Exemple de meme 2 -->
+        <div class="bg-white p-4 rounded-lg shadow-lg h-">
+          <img src="2.jpeg" alt="Meme 2"class="w-full h-60 object-cover rounded-lg mb-2">
+          <h3 class="font-semibold">Meme Titre 2</h3>
+          <p class="text-sm text-gray-600 mb-2">Description du meme 2</p>
+          <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+            <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+              <i class="fas fa-heart"></i> <span class="heart-count">10</span>
+            </button>
+            <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+              <i class="fas fa-share"></i> Partager
+            </button>
+          </div>
+        </div>
+  
+        <!-- Exemple de meme 3 -->
+        <div class="bg-white p-4 rounded-lg shadow-lg">
+          <img src="13.jpg" alt="Meme 3" class="w-full h-60 object-cover rounded-lg mb-2">
+          <h3 class="font-semibold">Meme Titre 3</h3>
+          <p class="text-sm text-gray-600 mb-2">Description du meme 3</p>
+          <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+            <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+              <i class="fas fa-heart"></i> <span class="heart-count">15</span>
+            </button>
+            <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+              <i class="fas fa-share"></i> Partager
+            </button>
+          </div>
+        </div>
+  
+        <!-- Ajoutez autant de memes que nécessaire -->
+        <div class="bg-white p-4 rounded-lg shadow-lg">
+          <img src="4.jpg" alt="Meme 4" class="w-full h-60 object-cover rounded-lg mb-2">
+          <h3 class="font-semibold">Meme Titre 4</h3>
+          <p class="text-sm text-gray-600 mb-2">Description du meme 4</p>
+          <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+            <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+              <i class="fas fa-heart"></i> <span class="heart-count">20</span>
+            </button>
+            <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+              <i class="fas fa-share"></i> Partager
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 m-8">
+          <!-- Exemple de meme 1 -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="5.jpg" alt="Meme 1" class="w-full h-60 object-cover rounded-lg mb-2">
+            <h3 class="font-semibold">Meme Titre 1</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 1</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">5</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+    
+          <!-- Exemple de meme 2 -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="6.jpg" alt="Meme 2" class="w-full h-60 object-cover rounded-lg mb-2">
+            <h3 class="font-semibold">Meme Titre 2</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 2</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">10</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+    
+          <!-- Exemple de meme 3 -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="7.jpg" alt="Meme 3" class="w-full h-60 object-cover rounded-lg mb-2">
+            <h3 class="font-semibold">Meme Titre 3</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 3</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">15</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+    
+          <!-- Ajoutez autant de memes que nécessaire -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="8.png" alt="Meme 4" class="w-full h-60 object-cover rounded-lg mb-2">
+            <h3 class="font-semibold">Meme Titre 4</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 4</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">20</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 m-8">
+          <!-- Exemple de meme 1 -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="10.png" alt="Meme 1" class="w-full h-60 object-cover rounded-lg mb-2">
+            <h3 class="font-semibold">Meme Titre 1</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 1</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">5</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+    
+          <!-- Exemple de meme 2 -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="9.jpg" alt="Meme 2" class="w-full h-60 object-cover rounded-lg mb-2">
+            <h3 class="font-semibold">Meme Titre 2</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 2</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">10</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+    
+          <!-- Exemple de meme 3 -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="11.jpg" alt="Meme 3" class="w-full h-60 object-cover rounded-lg mb-2"">
+            <h3 class="font-semibold">Meme Titre 3</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 3</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">15</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+    
+          <!-- Ajoutez autant de memes que nécessaire -->
+          <div class="bg-white p-4 rounded-lg shadow-lg">
+            <img src="12.jpg" alt="Meme 4" class="w-full h-60 object-cover rounded-lg mb-2"">
+            <h3 class="font-semibold">Meme Titre 4</h3>
+            <p class="text-sm text-gray-600 mb-2">Description du meme 4</p>
+            <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
+              <button onclick="incrementHeart(this)" class="text-red-500 hover:text-red-700">
+                <i class="fas fa-heart"></i> <span class="heart-count">20</span>
+              </button>
+              <button onclick="shareMeme()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-share"></i> Partager
+              </button>
+            </div>
+          </div>
+        </div>
     </section>
   </main>
 

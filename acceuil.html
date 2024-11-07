@@ -26,9 +26,18 @@
     function redirectToGenerate() {
         window.location.href = 'generate_meme.html';
     }
+
+
+    function showMemeDetailss() {
+        window.location.href = 'detail_meme2.html';
+    }
+
+
     function showMemeDetails() {
         window.location.href = 'detail_meme.html';
     }
+
+  
     function redirectToProfile() {
         window.location.href = 'mon_espace.html';
     }
@@ -204,8 +213,10 @@ function highlightButton(clickedButton) {
 
 
       <!-- Exemple de meme 2 -->
-      <div class="bg-white p-4 rounded-lg shadow-lg h-">
-        <img src="2.jpeg" alt="Meme 2"class="w-full h-60 object-cover rounded-lg mb-2">
+       <div class="bg-white p-4 rounded-lg shadow-lg">
+        <a href="javascript:void(0)" onclick="showMemeDetailss()">
+          <img src="2.jpg" alt="Meme 1" class="w-full h-60 object-cover rounded-lg mb-2">
+        </a>
         <h3 class="font-semibold">Meme Titre 2</h3>
         <p class="text-sm text-gray-600 mb-2">Description du meme 2</p>
         <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
