@@ -113,12 +113,18 @@ function highlightButton(clickedButton) {
     clickedButton.classList.add('bg-blue-500', 'text-white');
   }
   </script>
+  <style>
+    body {
+    font-family: 'Comic Neue', cursive;
+    background: linear-gradient(to right, #f9f9f9, #99ccff, #cc99ff);
+}
+  </style>
 </head>
-<body class="bg-gradient-to-r from-[#FFFFCC] via-[#CCFFFF] to-[#CCCCFF] min-h-screen p-0 m-0">
+<body class="min-h-screen p-0 m-0">
   <!-- Header -->
-  <header class="bg-gradient-to-r from-[#6699FF] to-[#99CCFF] flex items-center justify-between p-3 sm:p-4 w-full shadow-md">
+  <header class="bg-gradient-to-r from-purple-500 to-blue-400 flex items-center justify-between p-4 w-full shadow-md">
     <div class="flex items-center space-x-2 sm:space-x-3">
-      <img src="https://via.placeholder.com/40" alt="Logo" class="w-8 sm:w-10 h-8 sm:h-10 rounded-full">
+      <img src="logo.jpg" alt="Logo" class="w-8 sm:w-10 h-8 sm:h-10 rounded-full">
       <span class="text-lg sm:text-2xl font-bold text-gray-800">MemeAREA</span>
     </div>
     
@@ -138,20 +144,19 @@ function highlightButton(clickedButton) {
     <!-- Desktop Menu Buttons -->
     <div class="hidden sm:flex items-center space-x-3 sm:space-x-4">
       <button class="text-gray-700 hover:text-white"><i class="fas fa-cog text-xl sm:text-2xl"></i></button>
-      <button onclick="redirectToSignup()" class="bg-[#FFCCFF] text-gray-800 font-semibold px-2 md:px-4 py-1 md:py-2 rounded-lg shadow hover:bg-[#FF99CC] hover:text-white">S'inscrire</button>
-      <button onclick="scrollToLogin()" class="bg-white text-[#6699FF] font-semibold px-2 md:px-4 py-1 md:py-2 rounded-lg shadow hover:bg-[#336699] hover:text-white">Se connecter</button>
+      <button onclick="redirectToAcceuil()" class="bg-white text-[#6699FF] font-semibold px-2 md:px-4 py-1 md:py-2 rounded-lg shadow hover:bg-[#336699] hover:text-white">Acceuil</button>
+      <button onclick="redirectToGenerate()" class="bg-white text-[#6699FF] font-semibold px-2 md:px-4 py-1 md:py-2 rounded-lg shadow hover:bg-[#336699] hover:text-white">Créer</button>
       <div class="flex items-center space-x-1 sm:space-x-2">
         <i class="fas fa-user-circle text-2xl sm:text-3xl text-gray-700"></i>
         <button onclick="redirectToProfile()" class="text-gray-700 font-medium text-sm sm:text-base hover:text-white">Mon espace</button>
       </div>
     </div>
+   
   </header>
-  
-  
-  <!-- Menu mobile -->
-  <div id="mobile-menu" class="sm:hidden hidden flex-col space-y-2 items-center p-4 bg-gradient-to-r from-[#6699FF] to-[#99CCFF]">
-    <button onclick="redirectToSignup()" class="bg-[#FFCCFF] text-gray-800 font-semibold px-2 py-1 rounded-lg shadow hover:bg-[#FF99CC] hover:text-white w-full text-center">S'inscrire</button>
-    <button onclick="scrollToLogin()" class="bg-white text-[#6699FF] font-semibold px-2 py-1 rounded-lg shadow hover:bg-[#336699] hover:text-white w-full text-center">Se connecter</button>
+   <!-- Menu mobile -->
+   <div id="mobile-menu" class="sm:hidden hidden flex-col space-y-2 items-center p-4 bg-gradient-to-r from-[#6699FF] to-[#99CCFF]">
+    <button onclick="redirectToAcceuil()()" class="bg-[#FFCCFF] text-gray-800 font-semibold px-2 py-1 rounded-lg shadow hover:bg-[#FF99CC] hover:text-white w-full text-center">Acceuil</button>
+    <button onclick="redirectToGenerate()" class="bg-[#FFCCFF] text-gray-800 font-semibold px-2 py-1 rounded-lg shadow hover:bg-[#FF99CC] hover:text-white w-full text-center">Créer</button>
     <button onclick="redirectToProfile()" class="text-gray-700 font-medium text-sm sm:text-base hover:text-white w-full text-center">Mon espace</button>
     <button onclick="showSection('parametres')" class="text-gray-700 font-medium text-sm sm:text-base hover:text-white w-full text-center">Paramètres</button>
   </div>

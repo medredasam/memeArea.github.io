@@ -6,6 +6,13 @@
   <title>MemeArea</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    body {
+    font-family: 'Comic Neue', cursive;
+    background: linear-gradient(to right, #f9f9f9, #99ccff, #cc99ff);
+}
+  </style>
   <script>
     function incrementHeart(button) {
       const countElement = button.querySelector('.heart-count');
@@ -19,13 +26,124 @@
     function redirectToGenerate() {
         window.location.href = 'generate_meme.html';
     }
-  </script>
+    function showMemeDetails() {
+        window.location.href = 'detail_meme.html';
+    }
+    function redirectToProfile() {
+        window.location.href = 'mon_espace.html';
+    }
+    function showSection(sectionId, button) {
+   // Masquer toutes les sections de contenu
+   document.querySelectorAll('.content-section').forEach(section => {
+     section.classList.add('hidden');
+   });
+   
+   // Afficher la section sélectionnée
+   document.getElementById(sectionId).classList.remove('hidden');
+   
+   // Réinitialiser les styles de tous les boutons
+   document.querySelectorAll('.flex button').forEach(btn => {
+     btn.classList.remove('bg-blue-500', 'text-white');
+     btn.classList.add('bg-gray-300', 'text-gray-700');
+   });
+   
+   // Appliquer le style actif au bouton sélectionné
+   button.classList.remove('bg-gray-300', 'text-gray-700');
+   button.classList.add('bg-blue-500', 'text-white');
+ }
+   function incrementLike(button) {
+     const countElement = button.querySelector('.like-count');
+     let count = parseInt(countElement.textContent);
+     countElement.textContent = count + 1;
+   }
+
+   function incrementHeart(button) {
+     const countElement = button.querySelector('.heart-count');
+     let count = parseInt(countElement.textContent);
+     countElement.textContent = count + 1;
+   }
+
+   function shareMeme() {
+     alert('Le meme a été partagé!');
+   }
+
+   // Fonction pour afficher/masquer le menu mobile
+   function toggleMenu() {
+     const menu = document.getElementById("mobile-menu");
+     menu.classList.toggle("hidden");
+   }
+   function switchButton(sectionId, button) {
+   // Masquer toutes les sections de contenu
+   document.querySelectorAll('.content-section').forEach(section => {
+     section.classList.add('hidden');
+   });
+   
+   // Afficher la section sélectionnée
+   document.getElementById(sectionId).classList.remove('hidden');
+   
+   // Réinitialiser les styles de tous les boutons
+   document.querySelectorAll('.flex button').forEach(btn => {
+     btn.classList.remove('bg-blue-500', 'text-white');
+     btn.classList.add('bg-gray-300', 'text-gray-700');
+   });
+   
+   // Appliquer le style actif au bouton sélectionné
+   button.classList.remove('bg-gray-300', 'text-gray-700');
+   button.classList.add('bg-blue-500', 'text-white');
+ }
+ function switchActiveButton(clickedButton) {
+ // Sélectionne uniquement les boutons dans la section principale
+ const buttons = document.querySelectorAll('main .toggle-button');
+
+ buttons.forEach(button => {
+   if (button === clickedButton) {
+     button.classList.remove('bg-gray-300', 'text-gray-700');
+     button.classList.add('bg-blue-500', 'text-white');
+   } else {
+     button.classList.add('bg-gray-300', 'text-gray-700');
+     button.classList.remove('bg-blue-500', 'text-white');
+   }
+ });
+}
+
+function highlightButton(clickedButton) {
+   // Sélectionner tous les boutons avec la classe 'section-button'
+   document.querySelectorAll('.section-button').forEach(button => {
+     // Réinitialiser chaque bouton en gris
+     button.classList.remove('bg-blue-500', 'text-white');
+     button.classList.add('bg-gray-300', 'text-gray-700');
+   });
+   // Appliquer la couleur bleue uniquement au bouton cliqué
+   clickedButton.classList.remove('bg-gray-300', 'text-gray-700');
+   clickedButton.classList.add('bg-blue-500', 'text-white');
+ }
+ 
+ function switchSection(sectionId, clickedButton) {
+   // Masquer toutes les sections de contenu
+   document.querySelectorAll('.content-section').forEach(section => {
+     section.classList.add('hidden');
+   });
+   
+   // Afficher la section sélectionnée
+   document.getElementById(sectionId).classList.remove('hidden');
+
+   // Réinitialiser les styles de tous les boutons
+   document.querySelectorAll('.section-button').forEach(button => {
+     button.classList.remove('bg-blue-500', 'text-white');
+     button.classList.add('bg-gray-300', 'text-gray-700');
+   });
+
+   // Appliquer le style actif au bouton sélectionné
+   clickedButton.classList.remove('bg-gray-300', 'text-gray-700');
+   clickedButton.classList.add('bg-blue-500', 'text-white');
+ }
+ </script>
 </head>
-<body class="bg-gradient-to-r from-[#FFFFCC] via-[#CCFFFF] to-[#CCCCFF] min-h-screen p-0 m-0">
+<body class=" min-h-screen p-0 m-0">
   <!-- Header -->
-  <header class="bg-gradient-to-r from-[#6699FF] to-[#99CCFF] flex items-center justify-between p-3 sm:p-4 w-full shadow-md">
+  <header class="bg-gradient-to-r from-purple-500 to-blue-400 flex items-center justify-between p-4 w-full shadow-md">
     <div class="flex items-center space-x-2 sm:space-x-3">
-      <img src="2.jpeg" alt="Logo" class="w-8 sm:w-10 h-8 sm:h-10 rounded-full">
+      <img src="https://via.placeholder.com/40" alt="Logo" class="w-8 sm:w-10 h-8 sm:h-10 rounded-full">
       <span class="text-lg sm:text-2xl font-bold text-gray-800">MemeAREA</span>
     </div>
     
@@ -37,19 +155,41 @@
       </div>
     </div>
   
+    <!-- Hamburger Menu for Mobile -->
+    <button class="sm:hidden text-gray-700 ml-2" onclick="toggleMenu()">
+      <i class="fas fa-bars text-xl"></i>
+    </button>
+  
     <!-- Desktop Menu Buttons -->
     <div class="hidden sm:flex items-center space-x-3 sm:space-x-4">
-      <button onclick="redirectToProfile()" class="bg-[#FFCCFF] text-gray-800 font-semibold px-2 md:px-4 py-1 md:py-2 rounded-lg shadow hover:bg-[#FF99CC] hover:text-white">Accueil</button>
-      <button onclick="redirectToGenerate()" class="bg-white text-[#6699FF] font-semibold px-2 md:px-4 py-1 md:py-2 rounded-lg shadow hover:bg-[#336699] hover:text-white">Créer un Meme</button>
+      <button class="text-gray-700 hover:text-white"><i class="fas fa-cog text-xl sm:text-2xl"></i></button>
+      <button onclick="redirectToSignup()" class="bg-[#FFCCFF] text-gray-800 font-semibold px-2 md:px-4 py-1 md:py-2 rounded-lg shadow hover:bg-[#FF99CC] hover:text-white">Acceuil</button>
+      <button onclick="redirectToGenerate()" class="bg-white text-[#6699FF] font-semibold px-2 md:px-4 py-1 md:py-2 rounded-lg shadow hover:bg-[#336699] hover:text-white">Créer</button>
+      <div class="flex items-center space-x-1 sm:space-x-2">
+        <i class="fas fa-user-circle text-2xl sm:text-3xl text-gray-700"></i>
+        <button onclick="redirectToProfile()" class="text-gray-700 font-medium text-sm sm:text-base hover:text-white">Mon espace</button>
+      </div>
     </div>
+   
   </header>
-  
+   <!-- Menu mobile -->
+   <div id="mobile-menu" class="sm:hidden hidden flex-col space-y-2 items-center p-4 bg-gradient-to-r from-[#6699FF] to-[#99CCFF]">
+    <button onclick="redirectToSignup()" class="bg-[#FFCCFF] text-gray-800 font-semibold px-2 py-1 rounded-lg shadow hover:bg-[#FF99CC] hover:text-white w-full text-center">Acceuil</button>
+    <button onclick="redirectToGenerate()" class="bg-white text-[#6699FF] font-semibold px-2 py-1 rounded-lg shadow hover:bg-[#336699] hover:text-white w-full text-center">Créer</button>
+    <button onclick="redirectToProfile()" class="text-gray-700 font-medium text-sm sm:text-base hover:text-white w-full text-center">Mon espace</button>
+    <button onclick="showSection('parametres')" class="text-gray-700 font-medium text-sm sm:text-base hover:text-white w-full text-center">Paramètres</button>
+  </div>
+  <h2 class="text-center text-2xl sm:text-3xl font-bold text-gray-700 mt-4">
+    Le meilleur des memes, tout au même endroit
+  </h2>
   <!-- Main Content -->
-  <main class="flex-grow p-4 sm:p-8 pt-16 sm:pt-20">
+  <main class="flex-grow p-4 sm:p-6 pt-4 sm:pt-6">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 m-8">
-      <!-- Exemple de meme 1 -->
+      <!-- Exemple de mème avec image cliquable -->
       <div class="bg-white p-4 rounded-lg shadow-lg">
-        <img src="2.jpeg" alt="Meme 1" class="w-full h-40 object-cover rounded-lg mb-2">
+        <a href="javascript:void(0)" onclick="showMemeDetails()">
+          <img src="13.jpg" alt="Meme 1" class="w-full h-60 object-cover rounded-lg mb-2">
+        </a>
         <h3 class="font-semibold">Meme Titre 1</h3>
         <p class="text-sm text-gray-600 mb-2">Description du meme 1</p>
         <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
@@ -62,9 +202,10 @@
         </div>
       </div>
 
+
       <!-- Exemple de meme 2 -->
       <div class="bg-white p-4 rounded-lg shadow-lg h-">
-        <img src="https://via.placeholder.com/150" alt="Meme 2" class="w-full h-40 object-cover rounded-lg mb-2">
+        <img src="2.jpeg" alt="Meme 2"class="w-full h-60 object-cover rounded-lg mb-2">
         <h3 class="font-semibold">Meme Titre 2</h3>
         <p class="text-sm text-gray-600 mb-2">Description du meme 2</p>
         <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
@@ -79,7 +220,7 @@
 
       <!-- Exemple de meme 3 -->
       <div class="bg-white p-4 rounded-lg shadow-lg">
-        <img src="https://via.placeholder.com/150" alt="Meme 3" class="w-full h-40 object-cover rounded-lg mb-2">
+        <img src="3.jpg" alt="Meme 3" class="w-full h-60 object-cover rounded-lg mb-2">
         <h3 class="font-semibold">Meme Titre 3</h3>
         <p class="text-sm text-gray-600 mb-2">Description du meme 3</p>
         <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
@@ -94,7 +235,7 @@
 
       <!-- Ajoutez autant de memes que nécessaire -->
       <div class="bg-white p-4 rounded-lg shadow-lg">
-        <img src="https://via.placeholder.com/150" alt="Meme 4" class="w-full h-40 object-cover rounded-lg mb-2">
+        <img src="4.jpg" alt="Meme 4" class="w-full h-60 object-cover rounded-lg mb-2">
         <h3 class="font-semibold">Meme Titre 4</h3>
         <p class="text-sm text-gray-600 mb-2">Description du meme 4</p>
         <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
@@ -111,7 +252,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 m-8">
         <!-- Exemple de meme 1 -->
         <div class="bg-white p-4 rounded-lg shadow-lg">
-          <img src="2.jpeg" alt="Meme 1" class="w-full h-40 object-cover rounded-lg mb-2">
+          <img src="5.jpg" alt="Meme 1" class="w-full h-60 object-cover rounded-lg mb-2">
           <h3 class="font-semibold">Meme Titre 1</h3>
           <p class="text-sm text-gray-600 mb-2">Description du meme 1</p>
           <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
@@ -126,7 +267,7 @@
   
         <!-- Exemple de meme 2 -->
         <div class="bg-white p-4 rounded-lg shadow-lg">
-          <img src="https://via.placeholder.com/150" alt="Meme 2" class="w-full h-40 object-cover rounded-lg mb-2">
+          <img src="6.jpg" alt="Meme 2" class="w-full h-60 object-cover rounded-lg mb-2">
           <h3 class="font-semibold">Meme Titre 2</h3>
           <p class="text-sm text-gray-600 mb-2">Description du meme 2</p>
           <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
@@ -141,7 +282,7 @@
   
         <!-- Exemple de meme 3 -->
         <div class="bg-white p-4 rounded-lg shadow-lg">
-          <img src="https://via.placeholder.com/150" alt="Meme 3" class="w-full h-40 object-cover rounded-lg mb-2">
+          <img src="7.jpg" alt="Meme 3" class="w-full h-60 object-cover rounded-lg mb-2">
           <h3 class="font-semibold">Meme Titre 3</h3>
           <p class="text-sm text-gray-600 mb-2">Description du meme 3</p>
           <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
@@ -156,7 +297,7 @@
   
         <!-- Ajoutez autant de memes que nécessaire -->
         <div class="bg-white p-4 rounded-lg shadow-lg">
-          <img src="https://via.placeholder.com/150" alt="Meme 4" class="w-full h-40 object-cover rounded-lg mb-2">
+          <img src="8.png" alt="Meme 4" class="w-full h-60 object-cover rounded-lg mb-2">
           <h3 class="font-semibold">Meme Titre 4</h3>
           <p class="text-sm text-gray-600 mb-2">Description du meme 4</p>
           <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
@@ -172,7 +313,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 m-8">
         <!-- Exemple de meme 1 -->
         <div class="bg-white p-4 rounded-lg shadow-lg">
-          <img src="2.jpeg" alt="Meme 1" class="w-full h-40 object-cover rounded-lg mb-2">
+          <img src="10.png" alt="Meme 1" class="w-full h-60 object-cover rounded-lg mb-2">
           <h3 class="font-semibold">Meme Titre 1</h3>
           <p class="text-sm text-gray-600 mb-2">Description du meme 1</p>
           <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
@@ -187,7 +328,7 @@
   
         <!-- Exemple de meme 2 -->
         <div class="bg-white p-4 rounded-lg shadow-lg">
-          <img src="https://via.placeholder.com/150" alt="Meme 2" class="w-full h-40 object-cover rounded-lg mb-2">
+          <img src="9.jpg" alt="Meme 2" class="w-full h-60 object-cover rounded-lg mb-2">
           <h3 class="font-semibold">Meme Titre 2</h3>
           <p class="text-sm text-gray-600 mb-2">Description du meme 2</p>
           <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
@@ -202,7 +343,7 @@
   
         <!-- Exemple de meme 3 -->
         <div class="bg-white p-4 rounded-lg shadow-lg">
-          <img src="https://via.placeholder.com/150" alt="Meme 3" class="w-full h-40 object-cover rounded-lg mb-2">
+          <img src="11.jpg" alt="Meme 3" class="w-full h-60 object-cover rounded-lg mb-2"">
           <h3 class="font-semibold">Meme Titre 3</h3>
           <p class="text-sm text-gray-600 mb-2">Description du meme 3</p>
           <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">
@@ -217,7 +358,7 @@
   
         <!-- Ajoutez autant de memes que nécessaire -->
         <div class="bg-white p-4 rounded-lg shadow-lg">
-          <img src="https://via.placeholder.com/150" alt="Meme 4" class="w-full h-40 object-cover rounded-lg mb-2">
+          <img src="12.jpg" alt="Meme 4" class="w-full h-60 object-cover rounded-lg mb-2"">
           <h3 class="font-semibold">Meme Titre 4</h3>
           <p class="text-sm text-gray-600 mb-2">Description du meme 4</p>
           <div class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm lg:text-base flex-wrap">

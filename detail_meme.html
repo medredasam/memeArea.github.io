@@ -93,12 +93,18 @@ function shareMeme(button) {
 }
 
   </script>
+  <style>
+    body {
+    font-family: 'Comic Neue', cursive;
+    background: linear-gradient(to right, #f9f9f9, #99ccff, #cc99ff);
+}
+  </style>
 </head>
-<body class="bg-gradient-to-r from-[#FFFFCC] via-[#CCFFFF] to-[#CCCCFF] min-h-screen p-0 m-0">
+<body class=" min-h-screen p-0 m-0">
   <!-- Header -->
-  <header class="bg-gradient-to-r from-[#6699FF] to-[#99CCFF] flex items-center justify-between p-3 sm:p-4 w-full shadow-md">
+  <header class="bg-gradient-to-r from-purple-500 to-blue-400 flex items-center justify-between p-4 w-full shadow-md">
     <div class="flex items-center space-x-2 sm:space-x-3">
-      <img src="https://via.placeholder.com/40" alt="Logo" class="w-8 sm:w-10 h-8 sm:h-10 rounded-full">
+      <img src="logo.jpg" alt="Logo" class="w-8 sm:w-10 h-8 sm:h-10 rounded-full">
       <span class="text-lg sm:text-2xl font-bold text-gray-800">MemeAREA</span>
     </div>
     
@@ -118,36 +124,36 @@ function shareMeme(button) {
     <!-- Desktop Menu Buttons -->
     <div class="hidden sm:flex items-center space-x-3 sm:space-x-4">
       <button class="text-gray-700 hover:text-white"><i class="fas fa-cog text-xl sm:text-2xl"></i></button>
-      <button onclick="redirectToSignup()" class="bg-[#FFCCFF] text-gray-800 font-semibold px-2 md:px-4 py-1 md:py-2 rounded-lg shadow hover:bg-[#FF99CC] hover:text-white">S'inscrire</button>
-      <button onclick="scrollToLogin()" class="bg-white text-[#6699FF] font-semibold px-2 md:px-4 py-1 md:py-2 rounded-lg shadow hover:bg-[#336699] hover:text-white">Se connecter</button>
+      <button onclick="redirectToSignup()" class="bg-[#FFCCFF] text-gray-800 font-semibold px-2 md:px-4 py-1 md:py-2 rounded-lg shadow hover:bg-[#FF99CC] hover:text-white">Acceuil</button>
+      <button onclick="redirectToGenerate()" class="bg-white text-[#6699FF] font-semibold px-2 md:px-4 py-1 md:py-2 rounded-lg shadow hover:bg-[#336699] hover:text-white">Créer</button>
       <div class="flex items-center space-x-1 sm:space-x-2">
         <i class="fas fa-user-circle text-2xl sm:text-3xl text-gray-700"></i>
         <button onclick="redirectToProfile()" class="text-gray-700 font-medium text-sm sm:text-base hover:text-white">Mon espace</button>
       </div>
     </div>
-    <!-- Menu mobile caché par défaut -->
-    
+   
   </header>
-  <div id="mobile-menu" class="sm:hidden hidden flex-col space-y-2 items-center p-4 bg-gradient-to-r from-[#6699FF] to-[#99CCFF]">
-    <button onclick="redirectToSignup()" class="bg-[#FFCCFF] text-gray-800 font-semibold px-2 py-1 rounded-lg shadow hover:bg-[#FF99CC] hover:text-white w-full text-center">S'inscrire</button>
-    <button onclick="scrollToLogin()" class="bg-white text-[#6699FF] font-semibold px-2 py-1 rounded-lg shadow hover:bg-[#336699] hover:text-white w-full text-center">Se connecter</button>
+   <!-- Menu mobile -->
+   <div id="mobile-menu" class="sm:hidden hidden flex-col space-y-2 items-center p-4 bg-gradient-to-r from-[#6699FF] to-[#99CCFF]">
+    <button onclick="redirectToSignup()" class="bg-[#FFCCFF] text-gray-800 font-semibold px-2 py-1 rounded-lg shadow hover:bg-[#FF99CC] hover:text-white w-full text-center">Acceuil</button>
+    <button onclick="redirectToGenerate()" class="bg-white text-[#6699FF] font-semibold px-2 py-1 rounded-lg shadow hover:bg-[#336699] hover:text-white w-full text-center">Créer</button>
     <button onclick="redirectToProfile()" class="text-gray-700 font-medium text-sm sm:text-base hover:text-white w-full text-center">Mon espace</button>
     <button onclick="showSection('parametres')" class="text-gray-700 font-medium text-sm sm:text-base hover:text-white w-full text-center">Paramètres</button>
   </div>
 
   <main class="flex items-stretch justify-center p-4 max-w-4xl mx-auto mt-6 mb-20">
     <!-- Image du mème -->
-    <div class="w-1/2 flex items-center justify-center h-[600px]">
-      <img src="1.jpeg" alt="Mème" class="w-full h-full object-cover rounded-lg shadow-md border border-gray-200">
+    <div class="w-1/2 flex items-center  h-[600px]">
+      <img src="13.jpg" alt="Mème" class="w-full h-full object-fill rounded-lg shadow-md border border-gray-200">
     </div>
   
     <!-- Détails et actions -->
     <div class="w-1/2 bg-white p-6 rounded-lg shadow-lg flex flex-col justify-between h-[600px]">
       <!-- Informations de l'utilisateur -->
       <div class="flex items-center space-x-3">
-        <img src="2.jpeg" alt="Avatar" class="w-12 h-12 rounded-full">
+        <img src="profile.png" alt="Avatar" class="w-10 h-12 rounded-full">
         <div>
-          <p class="text-lg font-semibold">Tata</p>
+          <p class="text-lg font-semibold">Taha</p>
           <span class="text-sm text-gray-500">Posté il y a 2h</span>
         </div>
       </div>

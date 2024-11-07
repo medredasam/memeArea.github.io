@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Générateur de Mèmes</title>
-    <script src="https://cdn.tailwindcss.com"></script> 
+    <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
         body {
@@ -38,20 +39,174 @@
             box-shadow: 0px 0px 8px #99ccff;
         }
     </style>
+    <script>
+        function incrementHeart(button) {
+          const countElement = button.querySelector('.heart-count');
+          let count = parseInt(countElement.textContent);
+          countElement.textContent = count + 1;
+        }
+    
+        function shareMeme() {
+          alert('Le meme a été partagé!');
+        }
+        function redirectToGenerate() {
+            window.location.href = 'generate_meme.html';
+        }
+        function redirectToAcceuil() {
+            window.location.href = 'acceuil.html';
+        }
+        function redirectToProfile() {
+            window.location.href = 'mon_espace.html';
+        }
+        function showSection(sectionId, button) {
+       // Masquer toutes les sections de contenu
+       document.querySelectorAll('.content-section').forEach(section => {
+         section.classList.add('hidden');
+       });
+       
+       // Afficher la section sélectionnée
+       document.getElementById(sectionId).classList.remove('hidden');
+       
+       // Réinitialiser les styles de tous les boutons
+       document.querySelectorAll('.flex button').forEach(btn => {
+         btn.classList.remove('bg-blue-500', 'text-white');
+         btn.classList.add('bg-gray-300', 'text-gray-700');
+       });
+       
+       // Appliquer le style actif au bouton sélectionné
+       button.classList.remove('bg-gray-300', 'text-gray-700');
+       button.classList.add('bg-blue-500', 'text-white');
+     }
+       function incrementLike(button) {
+         const countElement = button.querySelector('.like-count');
+         let count = parseInt(countElement.textContent);
+         countElement.textContent = count + 1;
+       }
+    
+       function incrementHeart(button) {
+         const countElement = button.querySelector('.heart-count');
+         let count = parseInt(countElement.textContent);
+         countElement.textContent = count + 1;
+       }
+    
+       function shareMeme() {
+         alert('Le meme a été partagé!');
+       }
+    
+       // Fonction pour afficher/masquer le menu mobile
+       function toggleMenu() {
+         const menu = document.getElementById("mobile-menu");
+         menu.classList.toggle("hidden");
+       }
+       function switchButton(sectionId, button) {
+       // Masquer toutes les sections de contenu
+       document.querySelectorAll('.content-section').forEach(section => {
+         section.classList.add('hidden');
+       });
+       
+       // Afficher la section sélectionnée
+       document.getElementById(sectionId).classList.remove('hidden');
+       
+       // Réinitialiser les styles de tous les boutons
+       document.querySelectorAll('.flex button').forEach(btn => {
+         btn.classList.remove('bg-blue-500', 'text-white');
+         btn.classList.add('bg-gray-300', 'text-gray-700');
+       });
+       
+       // Appliquer le style actif au bouton sélectionné
+       button.classList.remove('bg-gray-300', 'text-gray-700');
+       button.classList.add('bg-blue-500', 'text-white');
+     }
+     function switchActiveButton(clickedButton) {
+     // Sélectionne uniquement les boutons dans la section principale
+     const buttons = document.querySelectorAll('main .toggle-button');
+    
+     buttons.forEach(button => {
+       if (button === clickedButton) {
+         button.classList.remove('bg-gray-300', 'text-gray-700');
+         button.classList.add('bg-blue-500', 'text-white');
+       } else {
+         button.classList.add('bg-gray-300', 'text-gray-700');
+         button.classList.remove('bg-blue-500', 'text-white');
+       }
+     });
+    }
+    
+    function highlightButton(clickedButton) {
+       // Sélectionner tous les boutons avec la classe 'section-button'
+       document.querySelectorAll('.section-button').forEach(button => {
+         // Réinitialiser chaque bouton en gris
+         button.classList.remove('bg-blue-500', 'text-white');
+         button.classList.add('bg-gray-300', 'text-gray-700');
+       });
+       // Appliquer la couleur bleue uniquement au bouton cliqué
+       clickedButton.classList.remove('bg-gray-300', 'text-gray-700');
+       clickedButton.classList.add('bg-blue-500', 'text-white');
+     }
+     
+     function switchSection(sectionId, clickedButton) {
+       // Masquer toutes les sections de contenu
+       document.querySelectorAll('.content-section').forEach(section => {
+         section.classList.add('hidden');
+       });
+       
+       // Afficher la section sélectionnée
+       document.getElementById(sectionId).classList.remove('hidden');
+    
+       // Réinitialiser les styles de tous les boutons
+       document.querySelectorAll('.section-button').forEach(button => {
+         button.classList.remove('bg-blue-500', 'text-white');
+         button.classList.add('bg-gray-300', 'text-gray-700');
+       });
+    
+       // Appliquer le style actif au bouton sélectionné
+       clickedButton.classList.remove('bg-gray-300', 'text-gray-700');
+       clickedButton.classList.add('bg-blue-500', 'text-white');
+     }
+     </script>
+    
 </head>
 <body class="min-h-screen flex flex-col items-center">
 
-    <!-- Header -->
-    <header class="bg-gradient-to-r from-purple-500 to-blue-400 flex items-center justify-between p-4 w-full shadow-md">
-        <div class="flex items-center space-x-2">
-            <img src="C:\Users\samik\Pictures\Screenshots\NicePng_meme-png_29036.png" alt="Logo" class="rounded-full w-10 md:h-10 shadow-md hover-bounce">
-            <h1 class="text-3xl font-extrabold text-white tracking-wide">MemeAREA</h1>
-        </div>
-        <div class="space-x-2 md:space-x-4 flex">
-            <button onclick="redirectToSignup()" class="neon-button text-white">S'inscrire</button>
-            <button onclick="scrollToLogin()" class="neon-button text-white bg-blue-500">Se connecter</button>
-        </div>
-    </header>
+  
+  <header class="bg-gradient-to-r from-purple-500 to-blue-400 flex items-center justify-between p-4 w-full shadow-md">
+    <div class="flex items-center space-x-2 sm:space-x-3">
+      <img src="https://via.placeholder.com/40" alt="Logo" class="w-8 sm:w-10 h-8 sm:h-10 rounded-full">
+      <span class="text-lg sm:text-2xl font-bold text-gray-800">MemeAREA</span>
+    </div>
+    
+    <!-- Search Bar -->
+    <div class="relative w-full max-w-[200px] sm:max-w-xs md:max-w-sm flex items-center">
+      <input type="text" placeholder="Recherchez sur MemeArea" class="pl-10 pr-4 py-1 sm:py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full text-sm sm:text-base transition-all duration-300">
+      <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+        <i class="fas fa-search text-gray-500 text-sm sm:text-base"></i>
+      </div>
+    </div>
+  
+    <!-- Hamburger Menu for Mobile -->
+    <button class="sm:hidden text-gray-700 ml-2" onclick="toggleMenu()">
+      <i class="fas fa-bars text-xl"></i>
+    </button>
+  
+    <!-- Desktop Menu Buttons -->
+    <div class="hidden sm:flex items-center space-x-3 sm:space-x-4">
+      <button class="text-gray-700 hover:text-white"><i class="fas fa-cog text-xl sm:text-2xl"></i></button>
+      <button onclick="redirectToAcceuil()" class="bg-white text-[#6699FF] font-semibold px-2 md:px-4 py-1 md:py-2 rounded-lg shadow hover:bg-[#336699] hover:text-white">Acceuil</button>
+      <button onclick="redirectToGenerate()" class="bg-[#FFCCFF] text-gray-800 font-semibold px-2 md:px-4 py-1 md:py-2 rounded-lg shadow hover:bg-[#FF99CC] hover:text-white">Créer</button>
+      <div class="flex items-center space-x-1 sm:space-x-2">
+        <i class="fas fa-user-circle text-2xl sm:text-3xl text-gray-700"></i>
+        <button onclick="redirectToProfile()" class="text-gray-700 font-medium text-sm sm:text-base hover:text-white">Mon espace</button>
+      </div>
+    </div>
+   
+  </header>
+   <!-- Menu mobile -->
+   <div id="mobile-menu" class="sm:hidden hidden flex-col space-y-2 items-center p-4 bg-gradient-to-r from-[#6699FF] to-[#99CCFF]">
+    <button onclick="redirectToAcceuil()()" class="bg-[#FFCCFF] text-gray-800 font-semibold px-2 py-1 rounded-lg shadow hover:bg-[#FF99CC] hover:text-white w-full text-center">Acceuil</button>
+    <button onclick="redirectToGenerate()" class="bg-white text-[#6699FF] font-semibold px-2 py-1 rounded-lg shadow hover:bg-[#336699] hover:text-white w-full text-center">Créer</button>
+    <button onclick="redirectToProfile()" class="text-gray-700 font-medium text-sm sm:text-base hover:text-white w-full text-center">Mon espace</button>
+    <button onclick="showSection('parametres')" class="text-gray-700 font-medium text-sm sm:text-base hover:text-white w-full text-center">Paramètres</button>
+  </div>
 
     <!-- Main Content -->
     <main class="flex-grow p-8 space-y-6">
