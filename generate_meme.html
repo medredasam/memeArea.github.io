@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Générateur de Mèmes</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
@@ -19,6 +20,7 @@
         .fun-shadow {
             box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
         }
+        
         .neon-button {
             border-radius: 12px;
             background-color: #f48fb1;
@@ -38,13 +40,41 @@
         .cool-input:focus {
             box-shadow: 0px 0px 8px #99ccff;
         }
+        .text-overlay {
+            position: absolute;
+            cursor: move;
+            padding: 5px;
+            background-color: transparent;
+            border: none;
+            color: #000;
+            
+            left: 50%;
+        }
+        #text-overlay-container {
+            position: relative;
+            width: 100%;
+            height: auto;
+            max-width: 500px;
+            overflow: hidden; /* Empêche le contenu de déborder */
+        }
+        #meme-image {
+            display: block;
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+        }
+        #top-text-overlay {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        #secondary-text-overlay {
+            font-size: 1em;
+            margin-top: 0.5em;
+            bottom: 80px;
+        }
     </style>
     <script>
-        function incrementHeart(button) {
-          const countElement = button.querySelector('.heart-count');
-          let count = parseInt(countElement.textContent);
-          countElement.textContent = count + 1;
-        }
+        
     
         function shareMeme() {
           alert('Le meme a été partagé!');
@@ -83,12 +113,7 @@
          countElement.textContent = count + 1;
        }
     
-       function incrementHeart(button) {
-         const countElement = button.querySelector('.heart-count');
-         let count = parseInt(countElement.textContent);
-         countElement.textContent = count + 1;
-       }
-    
+       
        function shareMeme() {
          alert('Le meme a été partagé!');
        }
@@ -163,6 +188,114 @@
        clickedButton.classList.remove('bg-gray-300', 'text-gray-700');
        clickedButton.classList.add('bg-blue-500', 'text-white');
      }
+     function updateImage() {
+            const input = document.getElementById('file-upload');
+            const file = input.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                document.getElementById('meme-image').src = e.target.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Add text to the meme
+        function addText() {
+    const topText = document.getElementById('top-text').value;
+    const secondaryText = document.getElementById('secondary-text').value;
+
+    const topTextColor = document.getElementById('top-text-color').value;
+    const secondaryTextColor = document.getElementById('secondary-text-color').value;
+
+    const topTextOverlay = document.getElementById('top-text-overlay');
+    const secondaryTextOverlay = document.getElementById('secondary-text-overlay');
+
+    // Mettre à jour le texte et la couleur
+    topTextOverlay.textContent = topText;
+    topTextOverlay.style.color = topTextColor;
+
+    secondaryTextOverlay.textContent = secondaryText;
+    secondaryTextOverlay.style.color = secondaryTextColor;
+}
+
+        
+
+        // Fonction de déplacement et de redimensionnement limitée au conteneur
+        function makeInteractable(elementId) {
+            interact(elementId)
+                .draggable({
+                    modifiers: [
+                        interact.modifiers.restrictRect({
+                            restriction: "#text-overlay-container",
+                            endOnly: true
+                        })
+                    ],
+                    listeners: {
+                        move(event) {
+                            const target = event.target;
+                            const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+                            const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+                            target.style.transform = `translate(${x}px, ${y}px)`;
+                            target.setAttribute('data-x', x);
+                            target.setAttribute('data-y', y);
+                        }
+                    }
+                })
+                .resizable({
+                    edges: { left: true, right: true, bottom: true, top: true },
+                    modifiers: [
+                        interact.modifiers.restrictEdges({
+                            outer: "#text-overlay-container"
+                        }),
+                        interact.modifiers.restrictSize({
+                            min: { width: 50, height: 40 },
+                        })
+                    ]
+                })
+                .on('resizemove', (event) => {
+                    const target = event.target;
+                    let x = (parseFloat(target.getAttribute('data-x')) || 0);
+                    let y = (parseFloat(target.getAttribute('data-y')) || 0);
+                    target.style.width = `${event.rect.width}px`;
+                    target.style.height = `${event.rect.height}px`;
+                    x += event.deltaRect.left;
+                    y += event.deltaRect.top;
+                    target.style.transform = `translate(${x}px, ${y}px)`;
+                    target.setAttribute('data-x', x);
+                    target.setAttribute('data-y', y);
+                });
+        }
+
+        // Rendre les deux éléments interactifs
+        makeInteractable('#top-text-overlay');
+        makeInteractable('#secondary-text-overlay');
+        function resetContent() {
+    // Réinitialiser l'image à son état initial
+    const memeImage = document.getElementById('meme-image');
+    memeImage.src = '20.png';  // Remettre l'image par défaut (vérifiez que cette image est correcte)
+
+    // Réinitialiser les champs de texte principal et secondaire
+    document.getElementById('top-text').value = '';  // Efface le champ de texte principal
+    document.getElementById('secondary-text').value = '';  // Efface le champ de texte secondaire
+
+    // Réinitialiser les éléments de superposition de texte (overlay)
+    document.getElementById('top-text-overlay').textContent = 'Texte Principal';  // Remet le texte par défaut
+    document.getElementById('secondary-text-overlay').textContent = 'Texte Secondaire';  // Remet le texte secondaire par défaut
+
+    // Réinitialiser la position des overlays de texte si nécessaire
+    document.getElementById('top-text-overlay').style.transform = 'translate(0px, 30px)';  // Remettre la position initiale
+    document.getElementById('secondary-text-overlay').style.transform = 'translate(0px,10px)'; 
+    document.getElementById('top-text-overlay').style.color = "black";  // Remettre la position initiale
+    document.getElementById('secondary-text-overlay').style.color = "black"; // Ajustez cette valeur si nécessaire
+
+    // Réinitialiser le nom de fichier sélectionné
+    document.getElementById('file-name').textContent = 'Aucun fichier choisi';  // Réinitialise le texte d'affichage pour le fichier
+}
+
+
      </script>
     
 </head>
@@ -201,7 +334,7 @@
    
   </header>
    <!-- Menu mobile -->
-   <div id="mobile-menu" class="sm:hidden hidden flex-col space-y-2 items-center p-4 bg-gradient-to-r from-[#6699FF] to-[#99CCFF]">
+   <div id="mobile-menu" class="sm:hidden hidden flex-col space-y-2 items-center p-4 bg-gradient-to-r from-[#6699FF] to-[#99CCFF] w-full">
     <button onclick="redirectToAcceuil()()" class="bg-[#FFCCFF] text-gray-800 font-semibold px-2 py-1 rounded-lg shadow hover:bg-[#FF99CC] hover:text-white w-full text-center">Acceuil</button>
     <button onclick="redirectToGenerate()" class="bg-white text-[#6699FF] font-semibold px-2 py-1 rounded-lg shadow hover:bg-[#336699] hover:text-white w-full text-center">Créer</button>
     <button onclick="redirectToProfile()" class="text-gray-700 font-medium text-sm sm:text-base hover:text-white w-full text-center">Mon espace</button>
@@ -214,32 +347,33 @@
 
         <!-- Meme Preview Section -->
         <div class="flex flex-col md:flex-row gap-8 justify-center items-center">
-            <!-- Meme Image Area -->
-            <div class="w-full md:w-1/2 p-4 bg-gray-200 rounded-lg shadow-lg fun-shadow hover-bounce transition-all">
-                <img src="https://img.freepik.com/vecteurs-libre/meme-carre-chat-vibrant-simple_742173-4493.jpg" alt="Meme" class="w-full max-w-md h-auto rounded-lg shadow-xl hover:scale-110 transition-all mx-auto">
-            </div>
+          <!-- Meme Image Area -->
+          <div  id="text-overlay-container" class="image-container w-full md:w-1/2 p-4 bg-gray-200 rounded-lg shadow-lg fun-shadow">
+              <img id="meme-image" src="20.png" alt="Meme" class="w-full max-w-md h-auto rounded-lg shadow-xl mx-auto">
+              <!-- Zones pour le texte principal et le texte secondaire -->
+        <div id="top-text-overlay" class="text-overlay" style="top: 60px;">Texte Principal</div>
+        <div id="secondary-text-overlay" class="text-overlay" >Texte Secondaire</div>
+          </div>
 
             <!-- Meme Controls -->
-            <div class="w-full md:w-1/2 space-y-6 bg-white p-6 rounded-lg shadow-md fun-shadow">
-                <div class="flex gap-4">
+            <div class="space-y-6 bg-white p-6 rounded-lg shadow-md fun-shadow" style="width: 400px;">
+              <div class="flex gap-4">
                     <button class="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all hover-bounce">Espacement</button>
                     <button class="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all hover-bounce">Ajouter objet</button>
                     <button class="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all hover-bounce">Dessiner</button>
                 </div>
 
                 <div class="space-y-4">
+                  <div class="space-y-4">
                     <label class="block text-gray-700 font-bold">Télécharger image</label>
                     <div class="relative">
-                        <!-- Hidden File Input -->
-                        <input type="file" id="file-upload" class="hidden" onchange="updateFileName()">
-                        
-                        <!-- Styled Label as the Button -->
-                        <label for="file-upload" class="flex items-center justify-center w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg shadow-md cursor-pointer hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 transition-all hover-bounce">
-                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M7 16V4m0 0h6m0 0v12m4-4h2v4a2 2 0 002 2h4m0-4H7M6 4h6m0 0V4a2 2 0 012 2v4"></path>
-                            </svg>
+                        <input type="file" id="file-upload" class="hidden" onchange="updateImage()">
+                        <label for="file-upload" class="flex items-center justify-center w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg shadow-md cursor-pointer transition-all">
                             Choisir un fichier
                         </label>
+                        <p id="file-name" class="mt-2 text-gray-600 italic"></p>
+                    </div>
+                
                 
                         <!-- Text Area for Showing File Name -->
                         <p id="file-name" class="mt-2 text-gray-600 italic"></p>
@@ -255,30 +389,42 @@
                     }
                 </script>
 
-                <div class="space-y-4">
-                    <label class="block text-gray-700 font-bold">Texte principal</label>
-                    <input type="text" class="w-full p-3 cool-input text-gray-800 bg-gray-100 rounded-lg shadow-sm">
-                    <label class="block text-gray-700 font-bold">Texte secondaire</label>
-                    <input type="text" class="w-full p-3 cool-input text-gray-800 bg-gray-100 rounded-lg shadow-sm">
-                </div>
+<div class="space-y-4">
+  <label class="block text-gray-700 font-bold">Texte principal</label>
+  <input type="text" id="top-text" class="w-full p-3 cool-input text-gray-800 bg-gray-100 rounded-lg shadow-sm">
+  
+  <label class="block text-gray-700 font-bold">Couleur du texte principal</label>
+  <input type="color" id="top-text-color" value="#FFFFFF" class="w-full p-3 cool-input text-gray-800 bg-gray-100 rounded-lg shadow-sm">
+  
+  <label class="block text-gray-700 font-bold">Texte secondaire</label>
+  <input type="text" id="secondary-text" class="w-full p-3 cool-input text-gray-800 bg-gray-100 rounded-lg shadow-sm">
+  
+  <label class="block text-gray-700 font-bold">Couleur du texte secondaire</label>
+  <input type="color" id="secondary-text-color" value="#FFFFFF" class="w-full p-3 cool-input text-gray-800 bg-gray-100 rounded-lg shadow-sm">
+</div>
+
+                    
+                    
+                  
 
                 <div class="flex gap-4">
                     <button class="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all hover-bounce">Effet</button>
-                    <button class="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all hover-bounce">Ajouter texte</button>
+                    <button onclick="addText()" class="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-lg transition-all">Ajouter texte</button>
                 </div>
             </div>
         </div>
 
         <!-- Options -->
         <div class="text-center mt-6">
-            <button class="text-blue-600 hover:text-blue-800 text-xl transition-colors duration-200 hover-bounce">plus d'options ⏷</button>
-        </div>
+          <button class="text-blue-600 hover:text-blue-800 text-xl transition-colors duration-200 hover-bounce">plus d'options ⏷</button>
+      </div>
 
-        <!-- Generate/Reset Buttons -->
-        <div class="flex justify-between mt-6">
-            <button class="bg-green-500 text-white py-3 px-6 rounded-lg hover:bg-green-600 hover-bounce transition-all">Générer</button>
-            <button class="bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-600 hover-bounce transition-all">Réinitialiser</button>
-        </div>
+      <!-- Generate/Reset Buttons -->
+      <div class="flex justify-between mt-6">
+          <button class="bg-green-500 text-white py-3 px-6 rounded-lg hover:bg-green-600 hover-bounce transition-all">Générer</button>
+          <button onclick="resetContent()" id="reset-button" class="bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-600 hover-bounce transition-all">Réinitialiser</button>
+        
+      </div>
     </main>
 
 </body>
