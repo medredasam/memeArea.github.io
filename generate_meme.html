@@ -302,7 +302,7 @@
 <body class="min-h-screen flex flex-col items-center">
 
   
-  <header class="bg-gradient-to-r from-purple-500 to-blue-400 flex items-center justify-between p-4 w-full shadow-md">
+  <header class="bg-slate-200 flex items-center justify-between p-4 w-full shadow-md">
     <div class="flex items-center space-x-2 sm:space-x-3">
       <img src="logo.jpg" alt="Logo" class="w-8 sm:w-10 h-8 sm:h-10 rounded-full">
       <span class="text-lg sm:text-2xl font-bold text-gray-800">MemeAREA</span>
@@ -337,13 +337,13 @@
    <div id="mobile-menu" class="sm:hidden hidden flex-col space-y-2 items-center p-4 bg-gradient-to-r from-[#6699FF] to-[#99CCFF] w-full">
     <button onclick="redirectToAcceuil()()" class="bg-[#FFCCFF] text-gray-800 font-semibold px-2 py-1 rounded-lg shadow hover:bg-[#FF99CC] hover:text-white w-full text-center">Acceuil</button>
     <button onclick="redirectToGenerate()" class="bg-white text-[#6699FF] font-semibold px-2 py-1 rounded-lg shadow hover:bg-[#336699] hover:text-white w-full text-center">Créer</button>
-    <button onclick="redirectToProfile()" class="text-gray-700 font-medium text-sm sm:text-base hover:text-white w-full text-center">Mon espace</button>
-    <button onclick="showSection('parametres')" class="text-gray-700 font-medium text-sm sm:text-base hover:text-white w-full text-center">Paramètres</button>
+    <button onclick="redirectToProfile()" class="text-[#FFCCFF] font-medium text-sm sm:text-base hover:text- w-full text-center">Mon espace</button>
+    <button onclick="showSection('parametres')" class="text-black-700 font-medium text-sm sm:text-base hover-bounce ">Paramètres</button>
   </div>
 
     <!-- Main Content -->
     <main class="flex-grow p-8 space-y-6">
-        <h2 class="text-5xl font-extrabold text-center text-purple-700">Meme Generator</h2>
+        <h2 class="text-5xl font-extrabold text-center text-[#5784BB]">Meme Generator</h2>
 
         <!-- Meme Preview Section -->
         <div class="flex flex-col md:flex-row gap-8 justify-center items-center">
@@ -358,9 +358,9 @@
             <!-- Meme Controls -->
             <div class="space-y-6 bg-white p-6 rounded-lg shadow-md fun-shadow" style="width: 400px;">
               <div class="flex gap-4">
-                    <button class="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all hover-bounce">Espacement</button>
-                    <button class="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all hover-bounce">Ajouter objet</button>
-                    <button class="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all hover-bounce">Dessiner</button>
+                    <button class="flex-1 bg-[#F8F4CF] text-black py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all hover-bounce">Espacement</button>
+                    <button class="flex-1 bg-[#F8F4CF] text-black py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all hover-bounce">Ajouter objet</button>
+                    <button class="flex-1 bg-[#F8F4CF] text-black py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all hover-bounce">Dessiner</button>
                 </div>
 
                 <div class="space-y-4">
@@ -368,7 +368,7 @@
                     <label class="block text-gray-700 font-bold">Télécharger image</label>
                     <div class="relative">
                         <input type="file" id="file-upload" class="hidden" onchange="updateImage()">
-                        <label for="file-upload" class="flex items-center justify-center w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg shadow-md cursor-pointer transition-all">
+                        <label for="file-upload" class="flex items-center justify-center w-full py-3 px-4 bg-[#F8F4CF] text-black rounded-lg shadow-md cursor-pointer hover-bounce transition-all">
                             Choisir un fichier
                         </label>
                         <p id="file-name" class="mt-2 text-gray-600 italic"></p>
@@ -408,8 +408,8 @@
                   
 
                 <div class="flex gap-4">
-                    <button class="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-lg hover:from-blue-600 hover:to-purple-600 transition-all hover-bounce">Effet</button>
-                    <button onclick="addText()" class="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-lg transition-all">Ajouter texte</button>
+                    <button class="flex-1 bg-[#F8F4CF] text-black py-2 rounded-lg  transition-all hover-bounce">Effet</button>
+                    <button onclick="addText()" class="flex-1 bg-[#F8F4CF] text-black py-2 rounded-lg transition-all hover-bounce">Ajouter texte</button>
                 </div>
             </div>
         </div>
@@ -429,3 +429,4 @@
 
 </body>
 </html>
+
